@@ -1,0 +1,19 @@
+
+<link rel="stylesheet" href="style.css">
+
+<div class="container">
+<h2>Register</h2>
+<input id="u">
+<input id="p" type="password">
+<button onclick="reg()">Register</button>
+</div>
+<script src="api.js"></script>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/api.js"></script>
+
+<script>
+async function reg(){
+ await fetch(API+"/register",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:u.value,password:p.value})});
+ alert("Registered"); location="login.html";
+}
+</script>

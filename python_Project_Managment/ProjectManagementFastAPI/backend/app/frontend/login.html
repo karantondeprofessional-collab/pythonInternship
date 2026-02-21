@@ -1,0 +1,19 @@
+
+<link rel="stylesheet" href="style.css">
+<div class="container">
+<h2>Login</h2>
+<input id="u" placeholder="Username">
+<input id="p" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<a href="register.html">Register</a>
+</div>
+<script src="api.js"></script>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/api.js"></script>
+
+<script>
+async function login(){
+ let r=await fetch(API+"/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({username:u.value,password:p.value})});
+ let d=await r.json(); saveToken(d.token); location="dashboard.html";
+}
+</script>

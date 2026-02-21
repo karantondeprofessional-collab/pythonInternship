@@ -1,0 +1,23 @@
+
+<link rel="stylesheet" href="style.css">
+<h2>Projects</h2>
+<input id="name" placeholder="Project name">
+<input id="desc" placeholder="Description">
+<button onclick="add()">Add</button>
+<table id="tbl"></table>
+<script src="api.js"></script>
+<link rel="stylesheet" href="/static/style.css">
+<script src="/static/api.js"></script>
+
+<script>
+async function add(){
+ await fetch(API+"/projects",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:name.value,description:desc.value})});
+ load();
+}
+async function load(){
+ let r=await fetch(API+"/projects"); let d=await r.json();
+ tbl.innerHTML="<tr><th>ID</th><th>Name</th></tr>";
+ d.forEach(p=>tbl.innerHTML+=`<tr><td>${p.id}</td><td>${p.name}</td></tr>`)
+}
+load();
+</script>
